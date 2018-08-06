@@ -10,8 +10,6 @@ fn main() {
     // uses the thread to create a random number from 1-100 (Rng::gen_range())
     let sn = rand::thread_rng().gen_range(1, 101);
 
-    println!("The secret number is: {}", sn);
-
     loop {
         println!("Please input your guess");
 
@@ -28,7 +26,9 @@ fn main() {
         // trim trims front and back (eliminating the \n)
         // parse turns it into a string, then error handling
         let guess: u32 = match guess.trim().parse() {
+            // a successful parse() literally results in an Ok value that contains the resulting number
             Ok(num) => num,
+            // this catches an Err containing anything, as parsing can prolly result in multiple types of errors
             Err(_) => continue,
         };
 
